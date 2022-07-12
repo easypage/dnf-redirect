@@ -30,5 +30,7 @@ app.post("/", async function (req, res) {
   }
   console.log(req.body);
 
-  return res.status(200).send({ status: "성공" });
+  const res = await axios.get(req.body.addr).then((result) => {
+    return res.status(200).send(result);
+  });
 });
