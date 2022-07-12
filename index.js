@@ -24,9 +24,11 @@ const serverList = (async function () {
 })();
 
 app.get("/", async function (req, res) {
+  console.log(req.body);
   if (Object.keys(req.body).length === 0) {
-    return res.status(400).send("실패하였습니다.");
+    return res.status(400).send({ status: "실패하였습니다." });
   }
+  const res = axios.get("");
   console.log(req.body);
 
   return res.status(200).send({ status: "성공" });
