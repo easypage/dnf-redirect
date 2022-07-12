@@ -18,7 +18,7 @@ app.post("/", async function (req, res) {
   }
   console.log(req.body);
 
-  const res = await axios.get(req.body.addr).then((result) => {
+  const result = await axios.get(req.body.addr).then((result) => {
     console.log(res);
     return res.status(200).send(result);
   });
