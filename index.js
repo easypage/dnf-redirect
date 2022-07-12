@@ -24,7 +24,10 @@ const serverList = (async function () {
 })();
 
 app.get("/", async function (req, res) {
-  serverList.then((result) => console.log(result));
+  if (Object.keys(req.body).length !== 0) {
+    return res.status(400).send("실패하였습니다.");
+  }
+  console.log(req.body);
 
-  res.send("hello NodeJs");
+  return res.status(200).send({ status: "성공" });
 });
