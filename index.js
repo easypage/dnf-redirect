@@ -23,7 +23,7 @@ const serverList = (async function () {
   return list;
 })();
 
-app.get("/", async function (req, res) {
+app.post("/", async function (req, res) {
   console.log(req.body);
   if (Object.keys(req.body).length === 0) {
     return res.status(400).send({ status: "실패하였습니다." });
