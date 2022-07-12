@@ -1,0 +1,29 @@
+const axios = require("axios");
+const express = require("express");
+const app = express();
+const cors = require("cors");
+
+app.use(cors());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+// 한번만 받기위한 최상위 await
+const serverList = (async function () {
+  console.log("함수 실행됨");
+  let list = [];
+  res = await axios.get(
+    "https://api.neople.co.kr/df/servers?apikey=cHQkUm6drsWx83fMwYuK1r0E13Wos2j0"
+  );
+  list = res.data.rows;
+
+  return list;
+})();
+
+console.log("안녕하세요");
+
+app.get("/", async function (req, res) {
+  serverList.then((result) => console.log(result));
+
+  res.send("hello NodeJs");
+});
+app.listen(3000, () => console.log("3000번 포트 대기"));
