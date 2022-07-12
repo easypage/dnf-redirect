@@ -11,18 +11,6 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// 한번만 받기위한 최상위 await
-const serverList = (async function () {
-  console.log("함수 실행됨");
-  let list = [];
-  res = await axios.get(
-    "https://api.neople.co.kr/df/servers?apikey=cHQkUm6drsWx83fMwYuK1r0E13Wos2j0"
-  );
-  list = res.data.rows;
-
-  return list;
-})();
-
 app.post("/", async function (req, res) {
   console.log(req.body);
   if (Object.keys(req.body).length === 0) {
@@ -31,6 +19,7 @@ app.post("/", async function (req, res) {
   console.log(req.body);
 
   const res = await axios.get(req.body.addr).then((result) => {
+    console.log(res);
     return res.status(200).send(result);
   });
 });
