@@ -24,7 +24,7 @@ const serverList = (async function () {
 })();
 
 app.get("/", async function (req, res) {
-  if (Object.keys(req.body).length !== 0) {
+  if (Object.keys(req.body).length === 0) {
     return res.status(400).send("실패하였습니다.");
   }
   console.log(req.body);
