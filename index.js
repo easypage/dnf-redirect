@@ -3,6 +3,10 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT);
+
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -19,11 +23,8 @@ const serverList = (async function () {
   return list;
 })();
 
-console.log("안녕하세요");
-
 app.get("/", async function (req, res) {
   serverList.then((result) => console.log(result));
 
   res.send("hello NodeJs");
 });
-app.listen(3000, () => console.log("3000번 포트 대기"));
