@@ -19,6 +19,8 @@ app.post("/", async function (req, res) {
   console.log(req.body);
   try {
     const data = await axios.get(req.body.addr).then((result) => {
+      console.log("result 확인");
+      console.log(result.data);
       return res.status(200).send(result.data);
     });
   } catch (error) {
